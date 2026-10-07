@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 3,
+  "candidate": "Your name",
+  "timezone": "UTC",
+  "preferences": {
+    "minimumMonthlyPay": {
+      "amount": null,
+      "currency": "USD"
+    },
+    "availability": "Not confirmed",
+    "noticePeriod": "Not confirmed",
+    "workAuthorization": "Not confirmed; do not infer from residence",
+    "focus": "Choose your target roles, industries and working arrangements",
+    "excludedEmployers": [],
+    "browser": "User opens their preferred supported browser, signs in themselves and explicitly names the tabs allowed for this run. Verify tool access and candidate identity. Email tabs are optional and read only: relevant receipts, rejections and legitimate application OTPs; never send, reply, open email links, download attachments or save codes/login data. Leave original tabs/windows open; close only assistant-created job tabs. Pause if control interrupts the user.",
+    "blockerWaitMinutes": 15
+  },
+  "applications": []
+}

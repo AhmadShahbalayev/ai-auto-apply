@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+# All candidate folders are private; clones start with an empty users folder.
+/users/*
+!/users/.gitkeep
+*.tmp
+
+# Local secrets and diagnostic output are not publication artifacts.
+.env
+.env.*
+!.env.example
+*.log
