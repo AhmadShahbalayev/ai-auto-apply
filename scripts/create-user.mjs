@@ -14,7 +14,7 @@ const [id, suppliedName] = process.argv.slice(2);
 const name = (suppliedName ?? id ?? "").trim();
 if (!isProfileName(id) || !name) {
   console.error(
-    'Use: npm run user -- "Elkhan Aliyev" "Elkhan Aliyev" (a normal folder name; no path separators, reserved OS names or invalid filename characters).',
+    'Use: npm run user -- "Alex Morgan" "Alex Morgan" (a normal folder name; no path separators, reserved OS names or invalid filename characters).',
   );
   process.exit(1);
 }

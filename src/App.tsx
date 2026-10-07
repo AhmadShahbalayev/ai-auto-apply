@@ -145,7 +145,7 @@ function ApplicationDashboard({ data }: { data: ApplicationData }) {
                 <ol>
                   <li>Open README.md and copy the setup prompt into an assistant with access to this folder.</li>
                   <li>Follow its guidance to create your private user folder, add your CV and review your background and preferences.</li>
-                  <li>Sign into your chosen job site yourself and tell the assistant which browser tabs it may use. Email access is optional and read only.</li>
+                  <li>Sign into your chosen job site yourself and tell the assistant which browser tabs it may use. Email access is optional and read-only by default; processed-email cleanup needs your permission.</li>
                   <li>Ask for one suitable application as a test. Review its saved result and answers here before requesting more.</li>
                 </ol>
                 <p>No jobs are submitted by opening this dashboard. Never share a build containing personal profiles.</p>

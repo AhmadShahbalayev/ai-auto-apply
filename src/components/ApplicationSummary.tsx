@@ -6,14 +6,9 @@ interface Props {
 
 export function ApplicationSummary({ applications }: Props) {
   const counts = [
-    { label: "Tracked", count: applications.length },
     {
       label: "Applied",
       count: applications.filter((job) => job.status === "Applied").length,
-    },
-    {
-      label: "Interviews",
-      count: applications.filter((job) => job.status === "Interview").length,
     },
     {
       label: "Needs attention",
@@ -22,6 +17,14 @@ export function ApplicationSummary({ applications }: Props) {
           job.status,
         ),
       ).length,
+    },
+    {
+      label: "Interviews",
+      count: applications.filter((job) => job.status === "Interview").length,
+    },
+    {
+      label: "Rejected",
+      count: applications.filter((job) => job.status === "Rejected").length,
     },
   ];
 
