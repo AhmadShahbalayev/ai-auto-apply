@@ -12,4 +12,4 @@ Prepare short, natural drafts for an introduction, strongest achievement, challe
 
 ## Writing style
 
-Use first person, plain words and concrete details. Adapt to the question and employer. Avoid generic praise, invented metrics and claims the candidate cannot explain. Respect employer instructions about assistance. Save the exact final questions/answers in that person's application record, without changing past submissions when drafts improve.
+Follow the “Natural, factual application answers” section in AGENTS.md. Draft from this person’s reviewed facts and voice; retain evidence and limitations beside each reusable story. Save the exact final questions/answers in that person's application record, without changing past submissions when drafts improve.
