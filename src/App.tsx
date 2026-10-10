@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { profiles } from "./data/profiles";
 import { ApplicationSummary } from "./components/ApplicationSummary";
 import { ApplicationTable } from "./components/ApplicationTable";
@@ -38,32 +38,36 @@ function ApplicationDashboard({ data }: { data: ApplicationData }) {
   const applications = data.applications;
   const searchTerm = search.trim().toLowerCase();
 
-  const visibleApplications = applications.filter((application) => {
-    const searchableText = [
-      application.source,
-      application.sourceNote,
-      application.company,
-      application.role,
-      application.pay,
-      application.locationEligibility,
-      application.fit,
-      application.notes,
-      application.status,
-      application.contract,
-      application.cv,
-      application.confirmation,
-      application.nextAction,
-      application.answerHistoryNote,
-      ...(application.answers ?? []).flatMap(({ question, answer }) => [
-        question,
-        answer,
-      ]),
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    return searchableText.includes(searchTerm);
-  });
+  // Build the text once per data update, rather than for every search keystroke.
+  const searchIndex = useMemo(
+    () => applications.map((application) => ({
+      application,
+      text: [
+        application.id,
+        application.jobUrl,
+        application.applicationUrl,
+        application.source,
+        application.sourceNote,
+        application.company,
+        application.role,
+        application.pay,
+        application.locationEligibility,
+        application.fit,
+        application.notes,
+        application.status,
+        application.contract,
+        application.cv,
+        application.confirmation,
+        application.nextAction,
+        application.answerHistoryNote,
+        ...(application.answers ?? []).flatMap(({ question, answer }) => [question, answer]),
+      ].join(" ").toLowerCase(),
+    })),
+    [applications],
+  );
+  const visibleApplications = searchIndex
+    .filter(({ text }) => text.includes(searchTerm))
+    .map(({ application }) => application);
 
   const lastUpdated = applications.reduce<string | null>(
     (latest, application) => {
