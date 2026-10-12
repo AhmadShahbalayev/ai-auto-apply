@@ -40,29 +40,35 @@ function ApplicationDashboard({ data }: { data: ApplicationData }) {
 
   // Build the text once per data update, rather than for every search keystroke.
   const searchIndex = useMemo(
-    () => applications.map((application) => ({
-      application,
-      text: [
-        application.id,
-        application.jobUrl,
-        application.applicationUrl,
-        application.source,
-        application.sourceNote,
-        application.company,
-        application.role,
-        application.pay,
-        application.locationEligibility,
-        application.fit,
-        application.notes,
-        application.status,
-        application.contract,
-        application.cv,
-        application.confirmation,
-        application.nextAction,
-        application.answerHistoryNote,
-        ...(application.answers ?? []).flatMap(({ question, answer }) => [question, answer]),
-      ].join(" ").toLowerCase(),
-    })),
+    () =>
+      applications.map((application) => ({
+        application,
+        text: [
+          application.id,
+          application.jobUrl,
+          application.applicationUrl,
+          application.source,
+          application.sourceNote,
+          application.company,
+          application.role,
+          application.pay,
+          application.locationEligibility,
+          application.fit,
+          application.notes,
+          application.status,
+          application.contract,
+          application.cv,
+          application.confirmation,
+          application.nextAction,
+          application.answerHistoryNote,
+          ...(application.answers ?? []).flatMap(({ question, answer }) => [
+            question,
+            answer,
+          ]),
+        ]
+          .join(" ")
+          .toLowerCase(),
+      })),
     [applications],
   );
   const visibleApplications = searchIndex
@@ -145,14 +151,35 @@ function ApplicationDashboard({ data }: { data: ApplicationData }) {
             </p>
             {applications.length === 0 && (
               <div className="getting-started">
-                <p>This local tracker keeps each person’s job applications, form answers and next steps together. Your AI assistant records them here when you authorize applications.</p>
+                <p>
+                  This local tracker keeps each person’s job applications, form
+                  answers and next steps together. Your AI assistant records
+                  them here when you authorize applications.
+                </p>
                 <ol>
-                  <li>Open README.md and copy the setup prompt into an assistant with access to this folder.</li>
-                  <li>Follow its guidance to create your private user folder, add your CV and review your background and preferences.</li>
-                  <li>Sign into your chosen job site yourself and tell the assistant which browser tabs it may use. Email access is optional and read-only by default; processed-email cleanup needs your permission.</li>
-                  <li>Ask for one suitable application as a test. Review its saved result and answers here before requesting more.</li>
+                  <li>
+                    Open README.md and copy the setup prompt into an assistant
+                    with access to this folder.
+                  </li>
+                  <li>
+                    Follow its guidance to create your private user folder, add
+                    your CV and review your background and preferences.
+                  </li>
+                  <li>
+                    Sign into your chosen job site yourself and tell the
+                    assistant which browser tabs it may use. Email access is
+                    optional and read-only by default; processed-email cleanup
+                    needs your permission.
+                  </li>
+                  <li>
+                    Ask for one suitable application as a test. Review its saved
+                    result and answers here before requesting more.
+                  </li>
                 </ol>
-                <p>No jobs are submitted by opening this dashboard. Never share a build containing personal profiles.</p>
+                <p>
+                  No jobs are submitted by opening this dashboard. Never share a
+                  build containing personal profiles.
+                </p>
               </div>
             )}
             {applications.length > 0 && (

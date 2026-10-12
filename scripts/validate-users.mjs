@@ -3,17 +3,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const statuses = new Set([
-  "Shortlisted",
-  "In progress",
-  "Applied",
-  "Blocked",
-  "Skipped",
-  "Uncertain submission",
-  "Rejected",
-  "Interview",
-  "Offer",
-]);
+const statuses = new Set(["Applied", "Skipped", "Rejected", "Ignored"]);
 const paths = [join(root, "templates/user/applications.json")];
 if (existsSync(join(root, "users"))) {
   for (const entry of readdirSync(join(root, "users"), {

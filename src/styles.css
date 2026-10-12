@@ -301,13 +301,7 @@ time {
   background: #21364e;
   color: #a4cdff;
 }
-.status-interview,
-.status-offer {
-  background: #223c30;
-  color: #a2d7b7;
-}
-.status-blocked,
-.status-uncertain-submission {
+.status-skipped {
   background: #433722;
   color: #e3c28b;
 }

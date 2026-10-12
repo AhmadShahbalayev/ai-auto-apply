@@ -1,13 +1,4 @@
-export type Status =
-  | "Shortlisted"
-  | "In progress"
-  | "Applied"
-  | "Blocked"
-  | "Skipped"
-  | "Uncertain submission"
-  | "Rejected"
-  | "Interview"
-  | "Offer";
+export type Status = "Applied" | "Skipped" | "Rejected" | "Ignored";
 
 export interface ApplicationAnswer {
   question: string;
