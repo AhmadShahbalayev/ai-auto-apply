@@ -66,47 +66,49 @@ export function ApplicationRow({ application, timezone }: Props) {
       </tr>
       <tr role="row" id={detailsId} hidden={!isExpanded}>
         <td role="cell" colSpan={6} className="detail-cell">
-          <section className="details" aria-labelledby={`${detailsId}-heading`}>
-            <header className="detail-heading">
-              <h3 id={`${detailsId}-heading`}>Application details</h3>
-              <div className="links">
-                {application.jobUrl && (
-                  <a href={application.jobUrl} target="_blank" rel="noreferrer">
-                    Job listing ↗
-                  </a>
-                )}
-                {application.applicationUrl && (
-                  <a
-                    href={application.applicationUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Application page ↗
-                  </a>
-                )}
-              </div>
-            </header>
-            <dl>
-              {details.map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value || "—"}</dd>
+          {isExpanded && (
+            <section className="details" aria-labelledby={`${detailsId}-heading`}>
+              <header className="detail-heading">
+                <h3 id={`${detailsId}-heading`}>Application details</h3>
+                <div className="links">
+                  {application.jobUrl && (
+                    <a href={application.jobUrl} target="_blank" rel="noreferrer">
+                      Job listing ↗
+                    </a>
+                  )}
+                  {application.applicationUrl && (
+                    <a
+                      href={application.applicationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Application page ↗
+                    </a>
+                  )}
                 </div>
-              ))}
-            </dl>
-            <ApplicationAnswers application={application} />
-            <p className="detail-footer">
-              Submitted:{" "}
-              {application.submittedAt ? (
-                <time dateTime={application.submittedAt}>
-                  {formatDate(application.submittedAt, timezone)}
-                </time>
-              ) : (
-                "—"
-              )}{" "}
-              · {timezone} · Reference: {application.id}
-            </p>
-          </section>
+              </header>
+              <dl>
+                {details.map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value || "—"}</dd>
+                  </div>
+                ))}
+              </dl>
+              <ApplicationAnswers application={application} />
+              <p className="detail-footer">
+                Submitted:{" "}
+                {application.submittedAt ? (
+                  <time dateTime={application.submittedAt}>
+                    {formatDate(application.submittedAt, timezone)}
+                  </time>
+                ) : (
+                  "—"
+                )}{" "}
+                · {timezone} · Reference: {application.id}
+              </p>
+            </section>
+          )}
         </td>
       </tr>
     </>
