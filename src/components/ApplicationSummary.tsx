@@ -1,16 +1,15 @@
-import type { Application } from "../types";
+import type { Application, Status } from "../types";
 
 interface Props {
   applications: Application[];
 }
 
 export function ApplicationSummary({ applications }: Props) {
-  const counts = ["Applied", "Skipped", "Rejected", "Ignored"].map(
-    (status) => ({
-      label: status === "Skipped" ? "Needs attention" : status,
-      count: applications.filter((job) => job.status === status).length,
-    }),
-  );
+  const statuses: Status[] = ["Applied", "Skipped", "Rejected", "Ignored"];
+  const counts = statuses.map((status) => ({
+    label: status,
+    count: applications.filter((job) => job.status === status).length,
+  }));
 
   return (
     <section aria-labelledby="overview-heading">
