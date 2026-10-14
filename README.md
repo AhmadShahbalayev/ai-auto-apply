@@ -29,6 +29,8 @@ VS Code is optional. Keep your designated browser tabs open during application r
 
 The dashboard is independent of the job site and the candidate’s profession. LinkedIn, Indeed, HH, Naukrigulf and employer career pages can all be recorded in the same format. The posting source and application destination are separate fields. The project does not contain integrations that guarantee automation on those sites.
 
+For jobs found on LinkedIn, the assistant also checks its application tracking after an attempt. It answers “Did you apply?” with Yes for a confirmed submission and No when nothing was submitted; an uncertain result stays unanswered until verified. Easy Apply normally records its own success, which the assistant checks. This extra step is recorded in the application notes when available. Your local JSON remains the source of truth for avoiding duplicates across different job sites; LinkedIn’s tracker alone cannot do that.
+
 On each device, the assistant must verify local file/terminal access, supported browser control, account identity, form inspection, uploads and submission confirmation before declaring a platform ready. Claude’s CLAUDE.md points to the same AGENTS.md workflow as other assistants. A chat-only assistant cannot operate this project. CAPTCHA, required unknown answers, unsupported browser actions and email verification links may still need your help; the assistant records a blocker instead of guessing or bypassing it. Its usage reserve also depends on an available provider reading or your explicit permission for that run.
 
 Start with one real application after setup and review the result before authorizing a longer run. The tracker and guides are reusable; successful automation on every assistant, operating system or website is not guaranteed.
@@ -36,9 +38,9 @@ Start with one real application after setup and review the result before authori
 ## What setup involves
 
 1. Install Node.js LTS from [the official download page](https://nodejs.org/en/download) if needed. Node runs the dashboard; npm comes with it.
-2. Open the project folder in your editor or assistant and install the locked dependencies with `npm ci`.
+2. Open the project folder in your editor or assistant and install the locked dependencies with `npm ci --cache node_modules/.cache/npm`.
 3. Create your personal folder with any normal folder name, for example `npm run user -- "Alex Morgan" "Alex Morgan"` or `npm run user -- alex "Alex"`. Capitals, spaces and names in other languages are supported. Only ordinary cross-platform filename restrictions apply; quote names containing spaces in commands. The command copies the neutral starter into the chosen users/ folder and refuses to overwrite an existing profile. Do not create an empty folder with only a CV; the starter files are also needed.
-4. Put your current CV PDF in users/alex/cv/. A DOCX copy is optional. Tell your assistant which version is current.
+4. Put your current CV PDF in `users/[your-folder-name]/cv/`, using the exact folder name you chose. A DOCX copy is optional. Tell your assistant which version is current. The name `template` is reserved for the dashboard's empty starter; choose another name.
 5. Have your assistant prepare your background, preferences and factual answer drafts. Review and correct them before authorizing applications. Missing eligibility, credentials or stories must stay unknown.
 6. Ask your assistant to start the dashboard and give you its localhost URL. Copy the full URL into any browser. VS Code and a visible terminal window are unnecessary when the assistant has local terminal tools. You can also run `npm run dev` yourself; Ctrl+C stops that manual server. Startup validates the data first.
 7. Open your preferred browser, sign into the job sites and email services you want to use, and tell your assistant exactly which tabs it may access. For other platforms or candidates, open their intended accounts instead. The assistant must verify its tools can access the browser and match the signed-in identity to your profile before applying. An open browser alone does not provide automation access; follow your AI tool’s supported connection setup if needed. You enter passwords yourself, and this project stores no browser sessions.
@@ -109,7 +111,7 @@ GitHub hosts the source; this is not a request to deploy the personal dashboard 
 
 To share a folder/ZIP, make a private backup first if needed, then remove the private user folders from the copy being shared. Removing a person's folder also removes their CVs, notes, answers, history from that copy. Do not delete your working profile just to share. Leave users/.gitkeep. Also omit node_modules/, dist/, .git/ and temporary files: an old build or Git history can retain deleted data. There is no separate export folder. With no users, the dashboard shows a neutral empty template and the recipient follows the setup prompt above.
 
-For a personal backup or new laptop, copy the whole project **including users/**. You can omit node_modules/ and dist/; `npm ci` recreates dependencies. Keep package-lock.json. A normal Git clone is not a backup of ignored profiles. On a new laptop, sign into your chosen browser yourself and verify the new assistant’s browser connection. Browser sessions are not transferred with this project. Do not publicly host a production build containing profiles.
+For a personal backup or new laptop, copy the whole project **including users/**. You can omit node_modules/ and dist/; `npm ci --cache node_modules/.cache/npm` recreates dependencies. Keep package-lock.json. A normal Git clone is not a backup of ignored profiles. On a new laptop, sign into your chosen browser yourself and verify the new assistant’s browser connection. Browser sessions are not transferred with this project. Do not publicly host a production build containing profiles.
 
 ## Commands
 
@@ -117,7 +119,7 @@ Run these in a terminal opened inside the project folder:
 
 | Command | What it does |
 | --- | --- |
-| `npm ci` | Install locked dependencies |
+| `npm ci --cache node_modules/.cache/npm` | Install locked dependencies with the cache inside this project |
 | `npm run user -- alex "Alex"` | Create a neutral user folder without overwriting another |
 | `npm run validate` | Check template and profile data |
 | `npm run dev` | Validate data and start the local dashboard |
@@ -157,7 +159,7 @@ You can authorize your assistant to move processed application emails to Trash a
 
 ### Keeping applications focused
 
-The assistant checks duplicates, whether the employer is still accepting applications, location eligibility and must-have requirements before filling a form. It reuses confirmed background and relevant stories while tailoring each answer. Search includes saved listing/application URLs, reference IDs, notes and recorded answers. Search text is prepared again when data changes, so live JSON updates remain searchable without rebuilding it on every keystroke.
+The assistant checks your full history across platforms before opening a new application form, matching company names/aliases, roles, requisition IDs and destination URLs. Reposts are not new applications. By default it targets new employers and avoids companies already in your tracker; tell it explicitly if you want to retry a skipped application or pursue another role at that company. Retries update the existing record, preserving its history. Recruiter listings are also compared by the underlying client where known. These are assistant workflow checks, not browser restrictions enforced by the app. It then checks whether the employer is still accepting applications, location eligibility and must-have requirements before filling a form. It reuses confirmed background and relevant stories while tailoring each answer. Search includes saved listing/application URLs, reference IDs, notes and recorded answers. Search text is prepared again when data changes, so live JSON updates remain searchable without rebuilding it on every keystroke.
 
 The dashboard records outcomes; it does not run a browser or submit jobs itself. Browser support comes from your assistant's actual tools. Paid services such as [Simplify](https://help.simplify.jobs/help/articles/1784339-getting-started-with-autopilot), [Huntr](https://help.huntr.co/en/articles/10393367-your-huntr-dashboard) and [LoopCV](https://blog.loopcv.pro/loopcv-spam-prevention/) describe profile-based autofill, tracking and application targeting. Those are useful workflow references, not dependencies or guarantees of interviews. This project keeps its existing local records, verified answers and quality checks instead of adding a subscription or uploading profiles to another service.
 

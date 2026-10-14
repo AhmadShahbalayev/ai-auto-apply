@@ -1,4 +1,5 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { isProfileName } from "./profile-name.mjs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,15 +7,28 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const statuses = new Set(["Applied", "Skipped", "Rejected", "Ignored"]);
 const paths = [join(root, "templates/user/applications.json")];
 if (existsSync(join(root, "users"))) {
+  const names = new Set();
   for (const entry of readdirSync(join(root, "users"), {
     withFileTypes: true,
   })) {
     if (!entry.isDirectory()) continue;
+    if (!isProfileName(entry.name))
+      throw new Error(
+        `users/${entry.name}: invalid or reserved profile folder name`,
+      );
+    const normalizedName = entry.name.normalize("NFC").toLowerCase();
+    if (names.has(normalizedName))
+      throw new Error(
+        `users/${entry.name}: profile folder names must be unique ignoring case`,
+      );
+    names.add(normalizedName);
     const folder = join(root, "users", entry.name);
     for (const file of ["USER.md", "ANSWERS.md", "applications.json", "cv"]) {
       if (!existsSync(join(folder, file)))
         throw new Error(`users/${entry.name}: missing ${file}`);
     }
+    if (!statSync(join(folder, "cv")).isDirectory())
+      throw new Error(`users/${entry.name}: cv must be a folder`);
     paths.push(join(folder, "applications.json"));
   }
 }

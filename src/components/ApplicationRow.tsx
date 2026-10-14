@@ -67,12 +67,19 @@ export function ApplicationRow({ application, timezone }: Props) {
       <tr role="row" id={detailsId} hidden={!isExpanded}>
         <td role="cell" colSpan={6} className="detail-cell">
           {isExpanded && (
-            <section className="details" aria-labelledby={`${detailsId}-heading`}>
+            <section
+              className="details"
+              aria-labelledby={`${detailsId}-heading`}
+            >
               <header className="detail-heading">
                 <h3 id={`${detailsId}-heading`}>Application details</h3>
                 <div className="links">
                   {application.jobUrl && (
-                    <a href={application.jobUrl} target="_blank" rel="noreferrer">
+                    <a
+                      href={application.jobUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Job listing ↗
                     </a>
                   )}

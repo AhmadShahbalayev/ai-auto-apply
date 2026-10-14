@@ -5,10 +5,12 @@ interface Props {
 }
 
 export function ApplicationSummary({ applications }: Props) {
-  const counts = ["Applied", "Skipped", "Rejected", "Ignored"].map((status) => ({
-    label: status === "Skipped" ? "Needs attention" : status,
-    count: applications.filter((job) => job.status === status).length,
-  }));
+  const counts = ["Applied", "Skipped", "Rejected", "Ignored"].map(
+    (status) => ({
+      label: status === "Skipped" ? "Needs attention" : status,
+      count: applications.filter((job) => job.status === status).length,
+    }),
+  );
 
   return (
     <section aria-labelledby="overview-heading">
