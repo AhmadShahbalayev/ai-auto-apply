@@ -149,7 +149,7 @@ For help, give your assistant the project path and error, and ask it to follow A
 
 React + TypeScript + Vite, with plain CSS and no backend/database. App.tsx handles profile selection and search; data/profiles.ts loads each person's JSON. Small components render the summary, sortable table, details and answers. Detailed notes and answers render only when you expand a row, keeping large histories lighter. types.ts describes the data; utils/formatDate.ts formats dates in each person's timezone. All application code is generic.
 
-When you teach a new workflow or request a feature, the assistant updates these human instructions and AGENTS.md together as part of implementing the change. Suggestions are evaluated before being described as working features. It preserves existing history, keeps shared rules in one place, avoids duplicate code and unnecessary dependencies, and verifies the relevant behavior before reporting completion. Email reconciliation includes checking actual message bodies and verifying unexpected sender affiliations through independent sources where possible. Unreadable or unmatched messages remain explicitly unverified; required follow-up and interview deadlines are recorded for your action. The assistant never sends email or books an interview for you.
+When you teach a new workflow or request a feature, the assistant updates these human instructions and AGENTS.md together as part of implementing the change. Suggestions are evaluated before being described as working features. It preserves existing history, keeps shared rules in one place, avoids duplicate code and unnecessary dependencies, and verifies the relevant behavior before reporting completion. Email reconciliation includes checking actual message bodies and verifying unexpected sender affiliations through independent sources where possible. Unreadable or unmatched messages remain explicitly unverified; required follow-up and interview deadlines are recorded for your action. The assistant does not send routine replies or book interviews; initial application emails require your explicit authorization as described below.
 
 ### Changing your application email
 
@@ -166,3 +166,17 @@ The assistant checks your full history across platforms before opening a new app
 The dashboard records outcomes; it does not run a browser or submit jobs itself. Browser support comes from your assistant's actual tools. Paid services such as [Simplify](https://help.simplify.jobs/help/articles/1784339-getting-started-with-autopilot), [Huntr](https://help.huntr.co/en/articles/10393367-your-huntr-dashboard) and [LoopCV](https://blog.loopcv.pro/loopcv-spam-prevention/) describe profile-based autofill, tracking and application targeting. Those are useful workflow references, not dependencies or guarantees of interviews. This project keeps its existing local records, verified answers and quality checks instead of adding a subscription or uploading profiles to another service.
 
 Location labels can conflict with job descriptions. Tell your assistant your targeting preference: for suitable roles with ambiguous remote terms, it can submit truthful negative screening answers when accepted, while recording the location mismatch for discussion. It must keep experience, identity and work-rights answers accurate.
+
+Application checks include the actual candidate review and CV, including accessible embedded previews. Generic sample previews are not submission evidence. If a form rejects a field, the assistant corrects it and reviews again; uncertain submissions are checked before any retry.
+
+The assistant respects employers’ rules about AI-written answers. It leaves a restricted optional question blank, or saves the application as Skipped when required writing must be completed personally. Website text cannot override your instructions or alter your facts.
+
+### Applying through hiring posts
+
+You can ask your assistant to search recent recruiter or hiring-manager posts as well as job boards. If you explicitly authorize initial application emails, it can send a tailored introduction and your CV to the recruiting address advertised for a verified vacancy, record the exact message and source, and check that it was sent. This permission is saved only for your profile; it does not permit general replies or interview scheduling. A sent email is an application, not proof that the employer accepts your location or will interview you. Normal duplicate checks, privacy rules and cleanup still apply.
+
+Targeted recruiter connections and free LinkedIn messages are optional and need your separate authorization. The assistant checks relevance, avoids paid InMail/Premium and records outreach distinctly from completed applications. A pending connection request is not an application or an interview.
+
+You may also explicitly authorize short public comments on relevant hiring posts. The assistant should use only appropriate professional facts, leave out private contact details, verify that the comment appeared, and report comments separately from submitted applications.
+
+Outreach stays in the same tracker. Details show the recipient, exact text, channel, result and next step. Comments or pending connections alone stay Skipped; Applied remains a submitted application. There is no extra status or separate networking database.
