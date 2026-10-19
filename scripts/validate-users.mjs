@@ -23,12 +23,18 @@ if (existsSync(join(root, "users"))) {
       );
     names.add(normalizedName);
     const folder = join(root, "users", entry.name);
-    for (const file of ["USER.md", "ANSWERS.md", "applications.json", "cv"]) {
+    for (const file of ["USER.md", "ANSWERS.md", "applications.json"]) {
       if (!existsSync(join(folder, file)))
         throw new Error(`users/${entry.name}: missing ${file}`);
     }
-    if (!statSync(join(folder, "cv")).isDirectory())
-      throw new Error(`users/${entry.name}: cv must be a folder`);
+    // Older profiles may retain cv/ until their documents are moved explicitly.
+    const documentsFolder = existsSync(join(folder, "documents"))
+      ? "documents"
+      : "cv";
+    if (!existsSync(join(folder, documentsFolder)))
+      throw new Error(`users/${entry.name}: missing documents folder`);
+    if (!statSync(join(folder, documentsFolder)).isDirectory())
+      throw new Error(`users/${entry.name}: ${documentsFolder} must be a folder`);
     paths.push(join(folder, "applications.json"));
   }
 }

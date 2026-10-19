@@ -35,5 +35,5 @@ const data = JSON.parse(readFileSync(path, "utf8"));
 data.candidate = name;
 writeFileSync(path, JSON.stringify(data, null, 2) + "\n");
 console.log(
-  `Created users/${id}/. Add the CV to cv/, then ask your assistant to follow the first-time setup in AGENTS.md. No applications submitted.`,
+  `Created users/${id}/. Add the CV to documents/, then ask your assistant to follow the first-time setup in AGENTS.md. No applications submitted.`,
 );

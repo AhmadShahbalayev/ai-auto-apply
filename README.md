@@ -40,7 +40,7 @@ Start with one real application after setup and review the result before authori
 1. Install Node.js LTS from [the official download page](https://nodejs.org/en/download) if needed. Node runs the dashboard; npm comes with it.
 2. Open the project folder in your editor or assistant and install the locked dependencies with `npm ci --cache node_modules/.cache/npm`.
 3. Create your personal folder with any normal folder name, for example `npm run user -- "Alex Morgan" "Alex Morgan"` or `npm run user -- alex "Alex"`. Capitals, spaces and names in other languages are supported. Only ordinary cross-platform filename restrictions apply; quote names containing spaces in commands. The command copies the neutral starter into the chosen users/ folder and refuses to overwrite an existing profile. Do not create an empty folder with only a CV; the starter files are also needed.
-4. Put your current CV PDF in `users/[your-folder-name]/cv/`, using the exact folder name you chose. A DOCX copy is optional. Tell your assistant which version is current. The name `template` is reserved for the dashboard's empty starter; choose another name.
+4. Put your current CV PDF in `users/[your-folder-name]/documents/`, using the exact folder name you chose. A DOCX copy is optional. Tell your assistant which version is current. The name `template` is reserved for the dashboard's empty starter; choose another name.
 5. Have your assistant prepare your background, preferences and factual answer drafts. Review and correct them before authorizing applications. Missing eligibility, credentials or stories must stay unknown.
 6. Ask your assistant to start the dashboard and give you its localhost URL. Copy the full URL into any browser. VS Code and a visible terminal window are unnecessary when the assistant has local terminal tools. You can also run `npm run dev` yourself; Ctrl+C stops that manual server. Startup validates the data first.
 7. Open your preferred browser, sign into the job sites and email services you want to use, and tell your assistant exactly which tabs it may access. For other platforms or candidates, open their intended accounts instead. The assistant must verify its tools can access the browser and match the signed-in identity to your profile before applying. An open browser alone does not provide automation access; follow your AI tool’s supported connection setup if needed. You enter passwords yourself, and this project stores no browser sessions.
@@ -83,7 +83,7 @@ users/
     USER.md                   Identity, background, account references, personal overrides
     ANSWERS.md                Reusable factual answer drafts
     applications.json         Search preferences, history and exact form answers
-    cv/                       Current CV PDF and optional DOCX
+    documents/                CVs, cover letters and supporting PDFs
 templates/user/                Neutral starter, no real person's data
 AGENTS.md                     Assistant setup checklist and general workflow rules
 CLAUDE.md                     Pointer to AGENTS.md
@@ -153,7 +153,7 @@ When you teach a new workflow or request a feature, the assistant updates these 
 
 ### Changing your application email
 
-Replace your CV files inside your own `users/<profile>/cv/` folder and tell your assistant which applicant contact email to use. It checks the updated CV and updates your profile without rewriting old submitted answers. Earlier applications may still reply to the previous address. You can forward relevant messages to an authorized readable mailbox; preserve the original sender, date, subject and full body so the assistant can match them correctly. Tell it exactly which mailbox tabs remain authorized. You do not need a particular email provider or an extra mailbox tab if your chosen inbox receives the necessary messages. Forwarded receipts do not automatically prove a job ID, interview or completed follow-up.
+Replace your CV files inside your own `users/<profile>/documents/` folder and tell your assistant which applicant contact email to use. It checks the updated CV and updates your profile without rewriting old submitted answers. Earlier applications may still reply to the previous address. You can forward relevant messages to an authorized readable mailbox; preserve the original sender, date, subject and full body so the assistant can match them correctly. Tell it exactly which mailbox tabs remain authorized. You do not need a particular email provider or an extra mailbox tab if your chosen inbox receives the necessary messages. Forwarded receipts do not automatically prove a job ID, interview or completed follow-up.
 
 ### Optional mailbox cleanup
 
@@ -175,13 +175,23 @@ The assistant respects employers’ rules about AI-written answers. It leaves a 
 
 You can ask your assistant to search recent recruiter or hiring-manager posts as well as job boards. If you explicitly authorize initial application emails, it can send a tailored introduction and your CV to the recruiting address advertised for a verified vacancy, record the exact message and source, and check that it was sent. This permission is saved only for your profile; it does not permit general replies or interview scheduling. A sent email is an application, not proof that the employer accepts your location or will interview you. Normal duplicate checks, privacy rules and cleanup still apply.
 
-Recruiter connections and free LinkedIn messages need your separate authorization and must relate to an active vacancy being applied to. The assistant may connect with its poster before applying through the advertised email or application link. It does not send general networking invitations or use paid InMail/Premium. A pending connection request is not an application or an interview.
+Recruiter connections and free LinkedIn messages need your separate authorization and must relate to an active vacancy being applied to. The assistant may send a standard free connection request without a note to its poster before applying through the advertised email or application link. It checks existing Connected/Pending states to avoid repeat invitations, respects platform limits, and does not wait for acceptance to apply. It does not send general networking invitations or use paid InMail/Premium. A pending connection request is not an application or an interview.
 
 You may also explicitly authorize short public comments on relevant hiring posts. The assistant should use only appropriate professional facts, leave out private contact details, verify that the comment appeared, and report comments separately from submitted applications.
 
-Outreach stays on the actual vacancy in the same tracker; standalone networking entries are not added. Details identify the company or individual client, role, source URL, application destination, exact generated answers or email recipient/subject/body, CV attachment and observed result. If the CV has not been sent or another required step remains, that vacancy stays Skipped with the next step recorded. Applied means an application was submitted. There is no extra status or separate networking database.
+The tracker is for applications. Connection requests are not logged there or in a separate list. Actual applications through hiring posts stay on the real vacancy in the same tracker; standalone networking entries are not added. Details identify the company or individual client, role, source URL, application destination, exact generated answers or email recipient/subject/body, CV attachment and observed result. If the CV has not been sent or another required step remains, that vacancy stays Skipped with the next step recorded. Applied means an application was submitted. For a LinkedIn hiring post, the vacancy URL is the original post, including when the application was sent by email. Email recipients and exact messages appear in Details; web application destinations are saved separately. There is no extra status or separate networking database.
 
+Once you have authorized these actions for your own profile, say **“Start LinkedIn outreach.”** This means: find relevant active hiring posts, connect with their posters without a note where available, and apply through the instructions they shared. The longer “Start sending connections and applying to jobs through LinkedIn posts” means the same thing. Other users must give their own consent; downloading the project does not authorize messages or submissions. Saving this workflow does not start it automatically.
+
+
+### Optional supporting documents
+
+You can keep a generic projects-and-recommendations PDF in your own documents/ folder and tell the assistant to use it for suitable additional-document uploads. Your CV stays separate, and cover letters remain tailored to each role. A summary of LinkedIn recommendations must be clearly labeled; it does not replace a signed employer reference or official employment certificate. The assistant checks what each upload field accepts and records the exact attachments used.
 
 ### Sharing an existing interview
 
 If your hiring platform stores an interview you completed, you can authorize the assistant to share it with employers you apply to. Some sites ask for this only after sending the application. The assistant checks and saves that choice and records the result in the application details. An interview appearing on your profile alone does not prove it was shared. Existing platform applications are checked for duplicates and kept separate from new submissions in session reports.
+
+### Older document folders
+
+New profiles store CVs, cover letters and supporting PDFs together in documents/. Older profiles with cv/ still work. Ask your assistant to move that folder to documents/ and update current profile instructions; it must preserve files and resolve any conflicts before merging. Historical application details may still mention the old cv/ path because they record what was used at the time. The application JSON keeps its existing cv field for compatibility.
