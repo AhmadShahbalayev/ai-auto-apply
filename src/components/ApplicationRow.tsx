@@ -104,13 +104,13 @@ export function ApplicationRow({ application, timezone }: Props) {
               </dl>
               <ApplicationAnswers application={application} />
               <p className="detail-footer">
-                Submitted:{" "}
+                Submission time:{" "}
                 {application.submittedAt ? (
                   <time dateTime={application.submittedAt}>
                     {formatDate(application.submittedAt, timezone)}
                   </time>
                 ) : (
-                  "—"
+                  "Not recorded"
                 )}{" "}
                 · {timezone} · Reference: {application.id}
               </p>

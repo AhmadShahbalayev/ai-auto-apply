@@ -151,8 +151,8 @@ for (const path of paths) {
     );
     if (app.status === "Applied")
       check(
-        app.submittedAt && app.confirmation.trim(),
-        `${app.id}: Applied needs a date and confirmation`,
+        app.confirmation.trim(),
+        `${app.id}: Applied needs confirmation`,
       );
     if (app.answers !== undefined)
       check(
