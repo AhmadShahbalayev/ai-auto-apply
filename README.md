@@ -59,7 +59,9 @@ For your first real test, tell your assistant:
 
 After reviewing that result, you can authorize a specific number of applications. Always name the person and platform. An application run handles one job at a time and saves its result before moving on. Account mismatches stop the run; OTP blockers that cannot be resolved through authorized email tabs, and unknown-answer blockers, are logged for later. After every application attempt, including skipped and uncertain outcomes, the assistant saves and validates the record, closes its job tab, and reports the company, actual outcome and successful application count. It reports available usage percentages honestly; account allowance is different from exact chat tokens. It then counts down a 5-second safe-stop pause, with no application active, before starting the next job. You can stop it during that pause. Steer can deliver your message during the active run, including the countdown. The assistant checks delivered messages between the separate one-second ticks and before the next job; it cannot force delivery or inspect the app’s pending-message queue. If your message is queued, use Steer (where available) or the Stop control to intervene during the current run. Usage is checked between applications, with a shared 5% remaining stop threshold when measurable. If readings are unavailable, it stops unless you explicitly authorize continuing without them for that run; you may also explicitly request skipping readings for one run. This reduces interruption risk but cannot guarantee uninterrupted sessions.
 
-Each job follows a complete cycle: apply and verify the result, save the answers, check authorized Inbox and Spam/Junk, update the tracker with matching receipts or next steps, and—with your permission—move only fully processed routine application mail to Trash. Important and unrelated messages stay untouched. Delayed email receipts do not prevent continuing after a confirmed portal submission; missing access or unfinished follow-up is recorded clearly. The usage check and five-second countdown come before the next application.
+Before applying to any new job, the assistant refreshes your existing authorized Gmail/mailbox tab, then checks **Trash/Deleted Items → Spam/Junk → Inbox**, in that order. If it uses a connected email tool, it fetches fresh results in the same order. Rejections and follow-ups you deleted can still update the tracker. It reads matching messages, updates and validates the tracker, then cleans up fully processed routine application mail if you have authorized cleanup. Only after those steps does it start new applications. Checks are limited to relevant application mail; deleted messages are not restored and Trash is never emptied. Missing access or incomplete coverage is reported.
+
+Each job follows a complete cycle: apply and verify the result, save the answers, refresh and check authorized Trash/Deleted Items, then Spam/Junk, then Inbox, update the tracker with matching receipts or next steps, and—with your permission—move only fully processed routine application mail to Trash. Important and unrelated messages stay untouched. Delayed email receipts do not prevent continuing after a confirmed portal submission; missing access or unfinished follow-up is recorded clearly. The usage check and five-second countdown come before the next application.
 
 At the start of each application run, the assistant starts the dashboard and gives you its verified localhost URL before applying. Watch updates in any browser; you do not need an editor open. When the run finishes, you stop it, or the usage reserve is reached, it saves the records and stops only dashboard and terminal processes it started. The URL stops working until the next run. A server you started yourself is left running unless you ask to stop it. Cleanup targets only its own processes and application tabs it created. It never quits your whole Chrome/Brave/editor, closes your other tabs/windows or stops terminals you started. Abruptly killing the assistant can prevent cleanup; it should check for leftovers next time. Ask the assistant for a daily review of submissions, best fits, skipped records and what would unblock them. Exact submitted answers help you prepare for interviews; draft stories may be improved without changing historical answers. No interview or job offer is guaranteed.
 
@@ -67,7 +69,7 @@ Only while actively applying, the assistant uses temporary sleep prevention wher
 
 Email checks reuse the mailbox tab you authorized; the assistant does not open a duplicate mailbox tab for each application and leaves your original tab open after cleanup.
 
-Your browser stays under your control. The assistant must avoid activating its window or using global mouse/keyboard actions while you work. Background behavior depends on the actual connection and needs testing. If it interrupts you, browser work pauses until a suitable method is available. When you authorize a signed-in email tab, the assistant checks relevant application receipts, rejections, interview invitations and OTP messages at session start, after each application attempt, and before cleanup. It refreshes when needed, checks Spam/Junk as well as Inbox during bounded session checks, and records matching evidence in your application history. Unexpected senders and unclear matches require verification before changing status. If a mailbox cannot be checked, it reports that limitation. Email access is read-only by default. Sending or replying requires separate explicit authorization saved in your profile; email links and attachments remain unopened. It may use a legitimate OTP only in the intended employer form; verification links are left for you. These checks run only while the assistant is working in an authorized session; they do not enable unattended monitoring after the session ends. It never stores the code. The project must not store passwords, login emails/usernames, cookies, tokens or browser session data. Your CV and application records may still contain your applicant contact email; that is needed for applications and is not a saved login credential. Unavailable or suspicious verification is logged for your review.
+Your browser stays under your control. The assistant must avoid activating its window or using global mouse/keyboard actions while you work. Background behavior depends on the actual connection and needs testing. If it interrupts you, browser work pauses until a suitable method is available. When you authorize a signed-in email tab, the assistant checks relevant application receipts, rejections, interview invitations and OTP messages at session start, after each application attempt, and before cleanup. It refreshes the existing mailbox tab before the initial check (or fetches fresh connected-email results), checks Trash/Deleted Items → Spam/Junk → Inbox during bounded session checks, and records matching evidence in your application history. Unexpected senders and unclear matches require verification before changing status. If a mailbox cannot be checked, it reports that limitation. Email access is read-only by default. Sending or replying requires separate explicit authorization saved in your profile; email links and attachments remain unopened. It may use a legitimate OTP only in the intended employer form; verification links are left for you. These checks run only while the assistant is working in an authorized session; they do not enable unattended monitoring after the session ends. It never stores the code. The project must not store passwords, login emails/usernames, cookies, tokens or browser session data. Your CV and application records may still contain your applicant contact email; that is needed for applications and is not a saved login credential. Unavailable or suspicious verification is logged for your review.
 
 ## Scheduling
 
@@ -102,7 +104,7 @@ General rules are edited in AGENTS.md. A confirmed exception for one person belo
 
 ## GitHub, sharing and backups
 
-**All private user folders are already ignored by Git.** The root .gitignore excludes users/* and keeps only users/.gitkeep, which preserves an empty folder in a clone. CVs, notes and application history under a user's folder are not added by ordinary `git add`. Never force-add personal profiles to a public repository. Before your first push, inspect `git status --short` and `git ls-files`: no private user folder, CV, generated build, credentials or personal notes should appear. Review the staged changes too. Ignoring is protection for ordinary Git commands, not encryption or a guarantee against force-adding files.
+**All private user folders are already ignored by Git.** The root .gitignore excludes users/\* and keeps only users/.gitkeep, which preserves an empty folder in a clone. CVs, notes and application history under a user's folder are not added by ordinary `git add`. Never force-add personal profiles to a public repository. Before your first push, inspect `git status --short` and `git ls-files`: no private user folder, CV, generated build, credentials or personal notes should appear. Review the staged changes too. Ignoring is protection for ordinary Git commands, not encryption or a guarantee against force-adding files.
 
 Ignoring a file does not remove it from existing commits. Before publishing an existing repository, check its tracked files and history for personal data. Ask your assistant to inspect this without publishing anything. For an unchecked history, create a fresh repository from cleaned source instead.
 
@@ -123,25 +125,25 @@ For a personal backup or new laptop, copy the whole project **including users/**
 
 Run these in a terminal opened inside the project folder:
 
-| Command | What it does |
-| --- | --- |
-| `npm ci --cache node_modules/.cache/npm` | Install locked dependencies with the cache inside this project |
-| `npm run user -- alex "Alex"` | Create a neutral user folder without overwriting another |
-| `npm run validate` | Check template and profile data |
-| `npm run dev` | Validate data and start the local dashboard |
-| `npm run build` | Validate data, check TypeScript and create a dashboard snapshot |
+| Command                                  | What it does                                                    |
+| ---------------------------------------- | --------------------------------------------------------------- |
+| `npm ci --cache node_modules/.cache/npm` | Install locked dependencies with the cache inside this project  |
+| `npm run user -- alex "Alex"`            | Create a neutral user folder without overwriting another        |
+| `npm run validate`                       | Check template and profile data                                 |
+| `npm run dev`                            | Validate data and start the local dashboard                     |
+| `npm run build`                          | Validate data, check TypeScript and create a dashboard snapshot |
 
 ## If something does not work
 
-| Problem | Next step |
-| --- | --- |
-| npm/node not found | Install Node LTS and reopen the terminal |
-| Dashboard does not open | Check the server is running and use its printed URL |
-| New person or edits not visible | Check the selected person's file; restart after adding a folder |
-| Validation error | Ask the assistant to fix the reported file while preserving history |
-| Browser access unavailable | Follow that assistant's supported browser setup |
-| Account identity mismatch | Log into the intended account and ask for a fresh identity check |
-| Profile already exists | Review the existing profile rather than overwriting it |
+| Problem                         | Next step                                                           |
+| ------------------------------- | ------------------------------------------------------------------- |
+| npm/node not found              | Install Node LTS and reopen the terminal                            |
+| Dashboard does not open         | Check the server is running and use its printed URL                 |
+| New person or edits not visible | Check the selected person's file; restart after adding a folder     |
+| Validation error                | Ask the assistant to fix the reported file while preserving history |
+| Browser access unavailable      | Follow that assistant's supported browser setup                     |
+| Account identity mismatch       | Log into the intended account and ask for a fresh identity check    |
+| Profile already exists          | Review the existing profile rather than overwriting it              |
 
 To resume on a different assistant or after a restart, use:
 
@@ -186,7 +188,6 @@ You may also explicitly authorize short public comments on relevant hiring posts
 The tracker is for applications. Connection requests are not logged there or in a separate list. Actual applications through hiring posts stay on the real vacancy in the same tracker; standalone networking entries are not added. Details identify the company or individual client, role, source URL, application destination, exact generated answers or email recipient/subject/body, CV attachment and observed result. If the CV has not been sent or another required step remains, that vacancy stays Skipped with the next step recorded. Applied means an application was submitted. For a LinkedIn hiring post, the vacancy URL is the original post, including when the application was sent by email. Email recipients and exact messages appear in Details; web application destinations are saved separately. There is no extra status or separate networking database.
 
 Once you have authorized these actions for your own profile, say **“Start LinkedIn outreach.”** This means: find relevant active hiring posts, connect with their posters without a note where available, and apply through the instructions they shared. The longer “Start sending connections and applying to jobs through LinkedIn posts” means the same thing. Other users must give their own consent; downloading the project does not authorize messages or submissions. Saving this workflow does not start it automatically.
-
 
 ### Job matching, Easy Apply and autofill
 
