@@ -224,3 +224,6 @@ You may also separately authorize free connection requests to relevant suggested
 
 
 For efficient recruiter outreach, the assistant searches your existing connections, chooses a relevant IT recruiter, opens their profile, sends any separately authorized requests to relevant suggested recruiters, then reads and messages the original connection. It saves the confirmed outcome privately and pauses three seconds before the next person. It reuses confirmed background facts and avoids repeated formatting checks or unnecessary research.
+
+
+With your permission, the assistant checks all visible suggested profiles before messaging your selected connection and sends a free request to each clearly relevant available recruiter. Existing connections and pending invitations are skipped. If LinkedIn limits invitations, the assistant saves the displayed restriction and expiry privately, dismisses the notice, and continues messages without repeatedly retrying invitations. An unspecified expiry stays unknown until access is restored.
