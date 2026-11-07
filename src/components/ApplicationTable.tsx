@@ -19,6 +19,9 @@ export function ApplicationTable({ applications, timezone }: Props) {
   const [sortColumn, setSortColumn] = useState<SortColumn>("updatedAt");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
+  // Keep the chosen sort when a search temporarily returns no rows.
+  if (applications.length === 0) return null;
+
   const sortedApplications = [...applications].sort((a, b) => {
     const comparison =
       sortColumn === "updatedAt"

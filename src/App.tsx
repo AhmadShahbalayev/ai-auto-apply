@@ -130,12 +130,10 @@ function ApplicationDashboard({ data }: { data: ApplicationData }) {
           </p>
         </div>
 
-        {visibleApplications.length > 0 && (
-          <ApplicationTable
-            applications={visibleApplications}
-            timezone={data.timezone}
-          />
-        )}
+        <ApplicationTable
+          applications={visibleApplications}
+          timezone={data.timezone}
+        />
 
         {visibleApplications.length === 0 && (
           <div className="empty">
