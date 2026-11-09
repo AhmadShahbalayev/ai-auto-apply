@@ -262,6 +262,8 @@ Default mailbox access is read-only; cleanup permission alone never grants sendi
 
 ## Optional outreach to existing recruiter connections
 
+When a user requests applications first with recruiter outreach as a fallback, screen the requested job source against the candidate’s fit and application history first. If no strong untracked match remains in that pass, switch to authorized first-degree messages and keep their outcomes in the private outreach log.
+
 This is separate from hiring-post applications and requires explicit permission for the selected profile. It is an exception to the active-vacancy-only message rule, not permission for random invitations, public comments, paid messages or bulk campaigns. A general introduction is never an Applied vacancy.
 
 - Select existing first-degree connections whose current headline/profile shows relevant technical recruiting, talent acquisition or hiring responsibility in the candidate's target market. Personalize using observed facts; skip unrelated HR specialties, consultants selling candidate services, ambiguous recipients and platform warnings.

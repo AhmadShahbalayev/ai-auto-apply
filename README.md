@@ -213,6 +213,8 @@ You can separately authorize polite replies to verified application-related recr
 
 ### Optional messages to recruiter connections
 
+You can ask for applications first and recruiter outreach as a fallback. If the assistant finds no strong new match in its search, it can switch to messaging your existing connections with your authorization.
+
 You can separately ask your assistant to introduce you to relevant recruiters already in your LinkedIn connections. It checks their current recruiting focus, avoids unrelated people and prior introductions, personalizes the message, and attaches your approved CV. This does not buy InMail, send random invitations or promise interviews.
 
 These introductions do not appear in the applications table. The assistant keeps a small private users/<your-profile>/outreach.json file containing the person/profile link, recruiting focus, exact message, attachment and send evidence/time. An unconfirmed send stays explicitly unconfirmed and is checked before any retry. It also checks existing applications and visible LinkedIn conversations before messaging. The file inherits the users/ Git ignore rules; include it in private backups. Future follow-ups are reviewed only when you ask, not scheduled automatically. The assistant reads the latest conversation and respects existing agreements and cooldowns. It saves each outreach outcome and pauses for three seconds before starting the next person, so you can stop or steer it safely.
