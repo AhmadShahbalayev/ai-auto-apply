@@ -102,11 +102,6 @@ for (const path of paths) {
   ])
     check(typeof p[field] === "string", `missing preference ${field}`);
   check(
-    Array.isArray(p.excludedEmployers) &&
-      p.excludedEmployers.every((x) => typeof x === "string"),
-    "excludedEmployers must be a list of names",
-  );
-  check(
     Number.isFinite(p.blockerWaitMinutes) &&
       p.blockerWaitMinutes >= 0 &&
       p.blockerWaitMinutes <= 15,

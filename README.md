@@ -213,7 +213,7 @@ You can separately authorize polite replies to verified application-related recr
 
 ### Optional messages to recruiter connections
 
-You can ask for applications first and recruiter outreach as a fallback. If the assistant finds no strong new match in its search, it can switch to messaging your existing connections with your authorization.
+You can authorize one search run that combines applications and recruiter outreach. Tell the assistant which action to start with, which job sites and sign-in methods it may use, and whether it may contact vacancy posters. If a source runs thin, the assistant can search another source, look for hiring posts, or message relevant existing connections. It should continue across authorized options until you stop it, the agreed usage reserve is reached, or a concrete blocker prevents further work.
 
 You can separately ask your assistant to introduce you to relevant recruiters already in your LinkedIn connections. It checks their current recruiting focus, avoids unrelated people and prior introductions, personalizes the message, and attaches your approved CV. This does not buy InMail, send random invitations or promise interviews.
 

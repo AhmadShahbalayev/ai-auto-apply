@@ -38,7 +38,6 @@ export interface ApplicationData {
     noticePeriod: string;
     workAuthorization: string;
     focus: string;
-    excludedEmployers: string[];
     browser: string;
     blockerWaitMinutes: number;
   };
