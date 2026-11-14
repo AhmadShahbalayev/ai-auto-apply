@@ -2,6 +2,12 @@
 
 This is a portable local job-application tracker. The folder containing this file is the project root, wherever the user moves it. Keep all task files here; no external copies, screenshots, spreadsheets or archive folders.
 
+## Browser selection for Codex
+
+Use the ChatGPT in-app browser for Codex application runs, including LinkedIn, and for any browser-based dashboard checks. This Codex-specific rule takes precedence over older profile notes naming Brave. Use the in-app tabs authorized for the run and verify the signed-in account and required browser actions there. If sign-in is required, have the user sign in directly in that browser. If the in-app browser is unavailable or a required action fails, report the specific blocker and keep the run on that browser unless the user requests a switch.
+
+Other assistants use a browser supported by their own tools and authorized by the user.
+
 ## First-time setup — when the user asks to onboard
 
 README.md is a human guide, not the assistant's execution checklist. Use this section for the one-prompt setup request; use the remaining sections for application work. Setup authorization does not authorize submissions, publishing, account changes or deleting existing people.
@@ -26,7 +32,7 @@ README.md is a human guide, not the assistant's execution checklist. Use this se
 - Check Node/npm. If missing, offer installation of Node LTS from the official Node.js download source. Install only with the user's authorization and the tool's required approvals; otherwise guide them through the installer. OS-installed prerequisites are outside the project; explain that exception before installation. Keep project dependencies/caches within this root. Recheck versions in a fresh terminal after installation.
 - For browser setup, check the user’s chosen browser is installed and supported by the assistant’s actual control tools. The user opens any browser supported by their assistant, signs into the sites they choose, and explicitly identifies the tabs the assistant may use. Do not assume access to every open tab or require a specific browser or email provider. Other people/platforms use their own accounts and preferences. If the tool cannot connect, explain the limitation before any application; do not install a replacement browser or automation package automatically.
 - Verify access to the user-designated browser tabs and actual signed-in account. The user enters credentials directly. Never read saved passwords, export cookies, clone browser profiles or store authentication data in the project. Do not disable security protections or bypass organization policy.
-- If macOS Brave explicitly reports that JavaScript through Apple Events is disabled, explain the exact observed setting: View > Developer > Allow JavaScript from Apple Events. Let the user enable it; do not silently change browser security settings. This permits page scripting but does not establish identity, background focus behavior, upload support or full browser readiness. Verify each needed capability before an application and pause if control steals focus.
+- For non-Codex assistants using Brave on macOS, if the browser explicitly reports that JavaScript through Apple Events is disabled, explain the exact observed setting: View > Developer > Allow JavaScript from Apple Events. Let the user enable it; do not silently change browser security settings. This permits page scripting but does not establish identity, background focus behavior, upload support or full browser readiness. Verify each needed capability before an application and pause if control steals focus.
 - Validate profile data, build the dashboard and verify its actual startup URL/HTTP response. When browser setup is authorized, verify browser access and account inspection separately; leave the user’s browser open. Dashboard readiness does not prove browser readiness. Verify each operating system and assistant locally and report untested capabilities honestly.
 - Provide a short readiness report: verified prerequisites, data reviewed, dashboard/browser checks, what still needs human action, and the next prompt for a one-job test. Setup never authorizes submissions. Ask for a real application only after the user has reviewed their facts and authorized applying.
 
