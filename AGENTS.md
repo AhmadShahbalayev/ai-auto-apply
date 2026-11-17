@@ -179,11 +179,20 @@ Default stop threshold: **5% remaining**. This is a general rule inherited by ev
 
 Read the selected profile’s standing authorizations before choosing the first source. A short “start applying” or “start outreaching” sets the first activity when that profile already authorizes both workflows. An explicit one-job test, count, platform restriction or outreach-only instruction takes precedence.
 
-Keep a working list of the authorized tabs and pending leads. When the current search runs thin, try another relevant query or filter, then move through the other authorized boards. If both workflows are authorized, switch to relevant first-degree LinkedIn outreach when applications stall, and back to applications when outreach stalls. After recording an outcome, use commentary for any progress update and take the next action in the same turn. A successful message, submitted application, unanswered question, empty result page or short batch does not complete a continuing run.
+### Continuation and stop check
 
-Before ending voluntarily, check the latest usage and identify the stop condition. To stop for lack of viable work, check the remaining authorized sources and fallback workflow and report what prevented progress on each. Save and validate completed work as it happens so an interruption does not require recreating it.
+Keep the next authorized action in view before handling each lead. After an application or outreach attempt, save and verify the outcome, check usage, pause for three seconds, then execute the next action in the same turn. Keep routine commentary brief or omit it when the user requests quiet work. A completed item, skipped form, unanswered question, dry search, or end of a batch advances this cycle.
 
-For a mixed run, finish an attempt, save and verify the result, check usage, pause, then choose the next viable action. A sparse source, a blocked form, or the end of a batch is a cue to switch, not end the run. At the stop check, identify the actual trigger before cleaning up: a user stop or requested completion condition, the measured reserve, unavailable required usage, or a concrete blocker across the remaining authorized paths. Report confirmed applications and outreach, with outreach counts for the run, today in the profile time zone, and overall.
+When a source runs thin, try another relevant query or filter and move through the other authorized tabs. When both workflows are authorized, switch to relevant first-degree LinkedIn outreach if applications stall, and return to applications when outreach stalls. Continue independent work while a lead needs user input.
+
+**Before closing the run or sending a final answer, verify which condition has been met:**
+
+- The user directed a stop or an explicit count or test is complete.
+- A fresh reading is at or below the configured reserve in a relevant usage window, or the provider has denied further usage. Keep working above the reserve.
+- A required usage reading is unavailable and the user has not authorized proceeding without it.
+- A mandatory identity check failed, or a verified blocker prevents further work across the remaining authorized sources and workflows. For an exhausted search, identify what was tried and why the other authorized paths could not continue.
+
+If none applies, execute the next authorized action now. Keep run-owned sleep prevention and the tracker active as appropriate. After a verified stop, remove sleep prevention first, clean up the remaining owned resources, and report the actual trigger and confirmed results. For outreach, report confirmed counts for the run, today in the profile time zone, and overall.
 
 Identity mismatches/unverifiable applicant identity stop the run as specified above. For other blockers, a single blocked application must not hold up the run. The user may be asleep or busy; do not spend the night waiting or repeatedly polling for a response.
 
