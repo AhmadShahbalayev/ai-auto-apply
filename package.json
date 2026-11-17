@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "predev": "npm run validate",
+    "prerun:tracker": "npm run validate",
+    "run:tracker": "node scripts/run-tracker.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "npm run validate && tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
