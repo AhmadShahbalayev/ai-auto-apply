@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const statuses = new Set(["Applied", "Skipped", "Rejected", "Ignored"]);
+const outreachPaths = [];
 const paths = [join(root, "templates/user/applications.json")];
 if (existsSync(join(root, "users"))) {
   const names = new Set();
@@ -36,6 +37,8 @@ if (existsSync(join(root, "users"))) {
     if (!statSync(join(folder, documentsFolder)).isDirectory())
       throw new Error(`users/${entry.name}: ${documentsFolder} must be a folder`);
     paths.push(join(folder, "applications.json"));
+    if (existsSync(join(folder, "outreach.json")))
+      outreachPaths.push(join(folder, "outreach.json"));
   }
 }
 const validDate = (value) => {
@@ -47,6 +50,10 @@ const validDate = (value) => {
     !Number.isFinite(Date.parse(value))
   )
     return false;
+  const hour = Number(value.slice(11, 13));
+  const minute = Number(value.slice(14, 16));
+  const second = Number(value.slice(17, 19));
+  if (hour > 23 || minute > 59 || second > 59) return false;
   // Date.parse normalizes impossible days, e.g. February 30; reject those too.
   const day = value.slice(0, 10);
   const midnight = Date.parse(`${day}T00:00:00Z`);
@@ -107,6 +114,8 @@ for (const path of paths) {
       p.blockerWaitMinutes <= 15,
     "blockerWaitMinutes must be between 0 and 15",
   );
+  if (p.workingArrangement !== undefined)
+    check(typeof p.workingArrangement === "string", "invalid workingArrangement");
   check(Array.isArray(data.applications), "applications must be a list");
   const ids = new Set();
   for (const app of data.applications) {
@@ -172,6 +181,22 @@ for (const path of paths) {
         typeof app.answerHistoryNote === "string",
         `${app.id}: invalid answerHistoryNote`,
       );
+  }
+}
+for (const path of outreachPaths) {
+  const data = JSON.parse(readFileSync(path, "utf8"));
+  if (!data || !Array.isArray(data.messages))
+    throw new Error(`${path}: outreach needs a messages array`);
+  for (const [index, message] of data.messages.entries()) {
+    for (const field of ["name", "profileUrl", "headline", "message", "cv", "notes"]) {
+      if (!message || typeof message[field] !== "string")
+        throw new Error(`${path}: message ${index}: invalid ${field}`);
+    }
+    if (!message.name.trim() || !message.profileUrl || !validUrl(message.profileUrl))
+      throw new Error(`${path}: message ${index}: name and HTTP(S) profile URL required`);
+    if (message.sentAt !== null && !validDate(message.sentAt))
+      throw new Error(`${path}: message ${index}: invalid sentAt`);
+    // Multiple messages to one recipient are valid historical follow-ups.
   }
 }
 console.log(

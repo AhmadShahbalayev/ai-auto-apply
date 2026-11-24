@@ -40,6 +40,7 @@ export interface ApplicationData {
     focus: string;
     browser: string;
     blockerWaitMinutes: number;
+    workingArrangement?: string;
   };
   applications: Application[];
 }

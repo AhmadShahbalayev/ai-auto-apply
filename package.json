@@ -11,7 +11,8 @@
     "build": "npm run validate && tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "user": "node scripts/create-user.mjs",
-    "validate": "node scripts/validate-users.mjs"
+    "validate": "node scripts/validate-users.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",
