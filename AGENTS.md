@@ -8,6 +8,19 @@ During first-time setup, ask the user which browser they want to use and which w
 
 The user signs in directly. Verify the connection, signed-in identity and capabilities needed for the task in the authorized tabs. If a required action fails, report the specific blocker and ask before switching to an alternative the user has not authorized. Setup permission covers only the agreed setup checks. Applications, outreach and mailbox changes require separate authorization.
 
+### Connected browser workflow
+
+When the authorized browser is available through the assistant's supported browser connection, prefer that connection for application and outreach UI work. In Codex, discover the connected browser, read its current tool documentation, and bind the actual authorized tabs. Do not assume Brave, an extension, or a particular API is available to another assistant or device.
+
+- Use the connection's supported accessibility actions or page locators to read, click, type, select options and upload files. Prefer these over operating-system scripts or ad hoc page scripting. Use read-only page evaluation only as the browser tool permits; never use it to bypass supported interaction or security restrictions. Terminal tools remain appropriate for local tracker files, validation, Git and owned processes.
+- Browser-controlled cursors, highlights and notices such as “ChatGPT started debugging” can be normal indicators of the connected browser session. They do not establish that a form was submitted, that a site was tested, or that unrestricted debugging access is authorized. Verify the actual page outcome. Do not hide or disable these indicators.
+- Respect the user's preference for seeing browser activity in their dedicated window while avoiding global mouse/keyboard input, forced window activation or interference with other windows. Visible activity and background operation are separate capabilities; verify what this connection supports. Ask about browser/window preference during first-time setup and reuse confirmed choices.
+- Read the current state after actions before choosing the next one. For dropdowns, select the rendered option and verify the selected value; text placed in an autocomplete input alone may not select it. Read attachment guidance before uploads and verify the filename and candidate. Do not repeatedly retry ineffective synthetic events.
+- Reuse a valid tab binding while it remains available. If a tab is stale, missing or released, inspect the current authorized tab inventory and rebind it if present. Check saved records and the visible page before retrying an uncertain send. Do not work around a browser security denial through scripts, another browser surface or lower-level commands.
+- Follow the tool's tab-ownership and handoff rules. Preserve original user tabs, close only owned application tabs after recording outcomes, and keep an unfinished tab only when needed for authorized continuation or user action. A browser-activity completion notice is not the end of the application run: after file/mail checks or other tools, continue to the next authorized lead unless the shared stop check is met.
+
+If the connection is unavailable or a capability fails, report the demonstrated limitation and choose another authorized source or supported method within the user's scope and the tool's rules. Do not silently install a browser helper, switch to an unauthorized browser, or promise a visible cursor or background control on an unverified setup.
+
 ## First-time setup — when the user asks to onboard
 
 README.md is a human guide, not the assistant's execution checklist. Use this section for the one-prompt setup request; use the remaining sections for application work. Setup authorization does not authorize submissions, publishing, account changes or deleting existing people.

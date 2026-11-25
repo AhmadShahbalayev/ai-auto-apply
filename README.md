@@ -37,6 +37,12 @@ Choose a browser your assistant can control. Codex can use the ChatGPT in-app br
 
 Start with one real application after setup and review the result before authorizing a longer run. The tracker and guides are reusable; successful automation on every assistant, operating system or website is not guaranteed.
 
+### Watching the assistant in your browser
+
+When your AI tool supports a connection to your chosen browser, the assistant prefers that connection for reading pages and completing applications. A dedicated Brave window can let you see the controlled cursor, highlights and page changes. A notice such as “ChatGPT started debugging” may describe the browser connection even while the task is applying or messaging; the notice itself is not proof of an application. The assistant still checks the candidate, recipient, answers, uploaded CV and actual submission confirmation.
+
+During setup, choose the browser and window you authorize and whether visible activity works for you. Cursor visibility and background operation depend on the assistant's connection and must be checked locally. The assistant follows its browser tool's instructions, preserves your original tabs and does not install a helper or change security settings automatically. Its browser-activity notices do not end a longer authorized run; it continues after saving records and checking usage until a real stop condition applies. See the [connected browser workflow](AGENTS.md#connected-browser-workflow) for the shared agent instructions.
+
 ## What setup involves
 
 1. Install Node.js LTS from [the official download page](https://nodejs.org/en/download) if needed. Node runs the dashboard; npm comes with it.
