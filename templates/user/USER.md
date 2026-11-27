@@ -8,7 +8,7 @@ Name, location, timezone, email, phone and professional profile/portfolio links:
 
 ## Platform account references
 
-No accounts verified yet. For each platform used, record the observed signed-in display name, public professional own-profile URL, observation date and source. Do not store passwords, login emails/usernames, cookies, tokens or OTPs. An account email can differ from the application contact email; inspect it live only when necessary and never save it as a login reference. A saved reference does not replace a live account check before applying. Follow AGENTS.md's identity gate; a mismatch or unverifiable identity stops the run.
+The user is responsible for signing into the correct accounts in authorized browser tabs. Routine own-profile/account-menu checks and saved account references are not required. Follow AGENTS.md's candidate selection and account responsibility rules: review actual applicant fields, CV and recipients, and pause affected actions only when a concrete account conflict appears. Do not store passwords, login credentials, cookies, tokens or OTPs.
 
 | Platform     | Expected account name | Own-profile URL / identifier | Source / last observed |
 | ------------ | --------------------- | ---------------------------- | ---------------------- |
